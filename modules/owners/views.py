@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from .models import Owner
 from .serializers import OwnerModelSerializer
 from django.http import Http404
+from rest_framework.permissions import IsAuthenticated
 
 
 # Create your views here.
@@ -29,6 +30,8 @@ class ListOwner(APIView): # por convención, ListOwner lista a todos los owners
 
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    permission_classes = (IsAuthenticated,)
 
 
 class DetailOwner(APIView):  # por convención detail modifica un owner específico
@@ -68,3 +71,5 @@ class DetailOwner(APIView):  # por convención detail modifica un owner específ
         owner = self._get_owner(id)
         owner.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    permission_classes = (IsAuthenticated,)

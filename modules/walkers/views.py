@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from .models import Walker
 from .serializers import WalkerModelSerializer
 from django.http import Http404
+from rest_framework.permissions import IsAuthenticated
 
 
 # Create your views here.
@@ -29,6 +30,8 @@ class ListWalker(APIView): # por convención, ListWalker lista a todos los walke
 
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    permission_classes = (IsAuthenticated,)
 
 
 class DetailWalker(APIView):  # por convención detail modifica un walker específico
@@ -69,4 +72,4 @@ class DetailWalker(APIView):  # por convención detail modifica un walker espec�
         walker.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-# Create your views here.
+    permission_classes = (IsAuthenticated,)

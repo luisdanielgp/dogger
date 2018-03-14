@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from .models import Dog
 from .serializers import DogModelSerializer
 from django.http import Http404
+from rest_framework.permissions import IsAuthenticated
 
 
 # Create your views here.
@@ -29,6 +30,8 @@ class ListDog(APIView): # por convención, ListDog lista a todos los dogs
 
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    permission_classes = (IsAuthenticated,)
 
 
 class DetailDog(APIView):  # por convención detail modifica un dog específico
@@ -68,3 +71,5 @@ class DetailDog(APIView):  # por convención detail modifica un dog específico
         dog = self._get_dog(id)
         dog.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    permission_classes = (IsAuthenticated,)

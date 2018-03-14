@@ -5,6 +5,8 @@ from rest_framework.response import Response
 from .models import User
 from .serializers import UserModelSerializer
 from django.http import Http404
+from rest_framework.permissions import IsAuthenticated
+
 
 
 # Create your views here.
@@ -29,6 +31,8 @@ class ListUser(APIView): # por convención, ListUser lista a todos los users
 
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    permission_classes = (IsAuthenticated,)
 
 
 class DetailUser(APIView):  # por convención detail modifica un user específico
@@ -69,5 +73,4 @@ class DetailUser(APIView):  # por convención detail modifica un user específic
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-
-# Create your views here.
+    permission_classes = (IsAuthenticated,)

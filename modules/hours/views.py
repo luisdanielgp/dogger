@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from .models import Hour
 from .serializers import HourModelSerializer
 from django.http import Http404
+from rest_framework.permissions import IsAuthenticated
 
 
 # Create your views here.
@@ -30,6 +31,8 @@ class ListHour(APIView): # por convención, ListHour lista a todos los hours
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    permission_classes = (IsAuthenticated,)
+
 
 class DetailHour(APIView):  # por convención detail modifica un hour específico
 
@@ -54,6 +57,7 @@ class DetailHour(APIView):  # por convención detail modifica un hour específic
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
     def patch(self, request, id):
         hour = self._get_hour(id)
         serializer = HourModelSerializer(
@@ -68,3 +72,5 @@ class DetailHour(APIView):  # por convención detail modifica un hour específic
         hour = self._get_hour(id)
         hour.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    permission_classes = (IsAuthenticated,)
