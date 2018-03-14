@@ -28,6 +28,7 @@ class UserManager(BaseUserManager, models.Manager):
 
 
 class User(AbstractBaseUser, PermissionsMixin, models.Model):
+    # unique, no se van a repetir
     id = models.UUIDField(primary_key=True, unique=True, editable=True, default=uuid.uuid4)
     name = models.CharField(max_length=40)
     lastname_paterno = models.CharField(max_length=40)
@@ -37,6 +38,7 @@ class User(AbstractBaseUser, PermissionsMixin, models.Model):
     gender = models.CharField(
         choices=(('M', 'Mujer'), ('H', 'Hombre')), max_length=16, blank=True)
     birth_date = models.DateField(blank=True, null=True)
+    # intermediario entre trans de cada modelo, object managaer de cada modelo
     objects = UserManager()
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

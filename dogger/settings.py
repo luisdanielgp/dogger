@@ -38,10 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'modules.users',
-    'modules.dogs',
     'modules.owners',
     'modules.walkers',
-    'modules.reservations'
+    'modules.dogs',
+    'modules.walks',
+    'modules.hours',
+    'rest_framework'
 
 ]
 
