@@ -4,7 +4,7 @@ import os
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["dogger-app.herokuapp.com"] # aquí va el dominio que le pondremos a heroku
+ALLOWED_HOSTS = ["dogger-app.herokuapp.com"]
 
 SECRET_KEY = os.getenv("SECRET_KEY", None)
 
