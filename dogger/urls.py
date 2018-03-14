@@ -21,4 +21,5 @@ urlpatterns = [
     path('api/v1/', include('modules.owners.urls', namespace="owners")),
     path('api/v1/', include('modules.walkers.urls', namespace="walkers")),
     path('api/v1/', include('modules.dogs.urls', namespace="dogs")),
+    path('api/v1/', include('modules.hours.urls', namespace="hours")),
 ]

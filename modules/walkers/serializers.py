@@ -1,8 +1,11 @@
 from rest_framework import serializers
 from .models import Walker
+from modules.hours.serializers import HourModelSerializer
 
 class WalkerModelSerializer(serializers.ModelSerializer):
 
-  class Meta:
+    hours = HourModelSerializer(many=True, read_only=True)
+
+    class Meta:
       model = Walker
-      fields = ('__all__')
+      fields = ('id', 'user', '' 'hours')
